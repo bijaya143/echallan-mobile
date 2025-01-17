@@ -49,13 +49,17 @@ class _TrafficHomeBaseViewState extends State<TrafficHomeBaseView> {
           ActionCard(
             title: 'Issue a ticket from here',
             subtitle: 'Issue a challan to impose a fine on the driver.',
-            buttonText: 'Issue a ticket',
+            buttonText: 'Scan user details',
             onPressed: () {
               print('Issue a ticket');
               Navigator.pushNamed(
                 context,
-                AppRouter.createTicketScreen,
+                AppRouter.qrScannerScreen,
               );
+              // Navigator.pushNamed(
+              //   context,
+              //   AppRouter.createTicketScreen,
+              // );
             },
           ),
         ],

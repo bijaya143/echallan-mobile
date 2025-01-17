@@ -14,11 +14,15 @@ import 'package:echalan/feature/auth_user/otp/view/otp_base_view.dart';
 import 'package:echalan/feature/auth_user/otp/view/screen/request_otp_base_screen.dart';
 import 'package:echalan/feature/auth_user/sign_in/view/sign_in_base_view.dart';
 import 'package:echalan/feature/auth_user/sign_up/view/register_base_view.dart';
-import 'package:echalan/feature/dashboard/presentation/view/dashboard_base_view.dart';
+import 'package:echalan/feature/guest/find_chalan/presentation/view/find_chalan_form.dart';
+import 'package:echalan/feature/guest/home/view/guest_home_base_screen.dart';
+import 'package:echalan/feature/guest/traffic_update/view/traffic_update_base_view.dart';
 import 'package:echalan/feature/history/data/model/historical_model.dart';
 import 'package:echalan/feature/history/presentation/view/widgets/ticket_detail.dart';
 import 'package:echalan/feature/landing/presentation/view/landing_base_view.dart';
 import 'package:echalan/feature/splash/presentation/view/splash_base_view.dart';
+import 'package:echalan/feature/traffic/dashboard/data/model/qr_code_data_model.dart';
+import 'package:echalan/feature/traffic/dashboard/view/screens/home/view/screen/qr_scanner_screen.dart';
 import 'package:echalan/feature/traffic/profile/presentation/view/widget/change_password.dart';
 import 'package:echalan/feature/traffic/dashboard/view/screens/home/view/screen/create_ticket_form.dart';
 import 'package:echalan/feature/traffic/dashboard/view/traffic_dashboard_base_view.dart';
@@ -62,6 +66,11 @@ class AppRouter {
       '/authUserChangePasswordScreen';
   static const String authUserContactUsScreen = '/authUserContactUsScreen';
   static const String notificationScreen = '/notificationScreen';
+  static const String guestHomeScreen = '/guestHomeScreen';
+  static const String findChalanScreen = '/findChalanScreen';
+  static const String trafficUpdateScreen = '/trafficUpdateScreen';
+  static const String qrScannerScreen = '/qr-scanner';
+
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     Object? argument = settings.arguments;
 
@@ -74,11 +83,6 @@ class AppRouter {
       case splashScreen:
         return MaterialPageRoute(
           builder: (_) => const SplashBaseView(),
-        );
-
-      case dashboard:
-        return MaterialPageRoute(
-          builder: (_) => const DashboardBaseView(),
         );
 
       case landingScreen:
@@ -113,7 +117,9 @@ class AppRouter {
 
       case createTicketScreen:
         return MaterialPageRoute(
-          builder: (_) => const CreateTicketForm(),
+          builder: (_) => CreateTicketForm(
+            qrCodeDataModel: argument! as QRCodeDataModel,
+          ),
         );
 
       case personalDetailScreen:
@@ -184,6 +190,11 @@ class AppRouter {
           ),
         );
 
+      case trafficUpdateScreen:
+        return MaterialPageRoute(
+          builder: (_) => const TrafficUpdateBaseView(),
+        );
+
       case authUserPersonalDetailScreen:
         return MaterialPageRoute(
           builder: (_) => const AuthUserPersonalDetailScreen(),
@@ -197,6 +208,21 @@ class AppRouter {
       case notificationScreen:
         return MaterialPageRoute(
           builder: (_) => const NotificationBaseView(),
+        );
+
+      case guestHomeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const GuestHomeBaseScreen(),
+        );
+
+      case findChalanScreen:
+        return MaterialPageRoute(
+          builder: (_) => const FindChalanForm(),
+        );
+
+      case qrScannerScreen:
+        return MaterialPageRoute(
+          builder: (_) => const QRScannerScreen(),
         );
 
       default:

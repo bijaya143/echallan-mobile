@@ -57,7 +57,12 @@ class _LandingBaseViewState extends State<LandingBaseView> {
                   ),
                   16.verticalSpace,
                   OutlineButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRouter.guestHomeScreen,
+                      );
+                    },
                     text: 'Continue as Guest User',
                   ),
                 ],

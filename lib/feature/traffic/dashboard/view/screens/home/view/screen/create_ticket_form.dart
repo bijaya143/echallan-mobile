@@ -1,12 +1,17 @@
 import 'package:echalan/core/constants/dropdown_constants.dart';
 import 'package:echalan/core/imports/ui_imports.dart';
+import 'package:echalan/feature/traffic/dashboard/data/model/qr_code_data_model.dart';
 import 'package:echalan/widgets/app_button.dart';
 import 'package:echalan/widgets/app_drop_down.dart';
 import 'package:echalan/widgets/app_text_field.dart';
 
 class CreateTicketForm extends StatefulWidget {
-  const CreateTicketForm({super.key});
+  const CreateTicketForm({
+    required this.qrCodeDataModel,
+    super.key,
+  });
 
+  final QRCodeDataModel qrCodeDataModel;
   @override
   State<CreateTicketForm> createState() => _CreateTicketFormState();
 }
@@ -19,6 +24,14 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
   final TextEditingController reasonController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.qrCodeDataModel.fullName;
+    licenseNumberController.text = widget.qrCodeDataModel.licenseNumber;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -66,6 +79,7 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                               controller: nameController,
                               labelText: 'Full Name',
                               hintText: 'Enter your full name',
+                              readOnly: true,
                               validator: (value) {
                                 if (value?.isEmpty ?? true) {
                                   return 'Please enter your full name';
@@ -79,6 +93,7 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                               controller: licenseNumberController,
                               labelText: 'License Number',
                               hintText: 'Enter your license number',
+                              readOnly: true,
                               validator: (value) {
                                 if (value?.isEmpty ?? true) {
                                   return 'Please enter your license number';

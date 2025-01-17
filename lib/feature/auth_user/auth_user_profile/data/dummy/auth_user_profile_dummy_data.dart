@@ -3,7 +3,7 @@ import 'package:echalan/feature/auth_user/auth_user_profile/data/model/auth_user
 AuthUserProfileModel authUserProfileModel = AuthUserProfileModel(
   fullName: 'Bijaya Majhi',
   licenseNumber: '098765',
-  phoneNumber: '+977- 9862712972',
+  phoneNumber: '+977- 9876543210',
   vehicleNumber: '123456',
   district: 'Kathmandu',
   reason: 'Traffic Violation',

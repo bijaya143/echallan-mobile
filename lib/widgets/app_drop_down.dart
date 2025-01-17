@@ -7,6 +7,7 @@ class AppDropdownField extends StatelessWidget {
   final String hintText;
   final List<String> options;
   final double? maxHeight;
+  final Function(String)? onChanged;
 
   const AppDropdownField({
     super.key,
@@ -15,11 +16,15 @@ class AppDropdownField extends StatelessWidget {
     required this.hintText,
     required this.options,
     this.maxHeight = 250,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey fieldKey = GlobalKey();
+
+    final double contentHeight =
+        (options.length * 40).clamp(0, 300.h).toDouble();
 
     return AppTextField(
       key: fieldKey,
@@ -35,12 +40,12 @@ class AppDropdownField extends StatelessWidget {
         showMenu<String>(
           context: context,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.r),
           ),
           constraints: BoxConstraints(
             minWidth: renderBox.size.width,
             maxWidth: renderBox.size.width,
-            maxHeight: maxHeight ?? 250,
+            maxHeight: contentHeight,
           ),
           position: RelativeRect.fromLTRB(
             position.dx,
@@ -52,28 +57,36 @@ class AppDropdownField extends StatelessWidget {
             PopupMenuItem<String>(
               enabled: false,
               child: SizedBox(
-                height: maxHeight ?? 250,
+                height: contentHeight,
                 child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: options.map((String value) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.pop(context, value);
-                        },
-                        child: Container(
-                          height: 40,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            value,
-                            style: context.bodyMedium.copyWith(
-                              fontSize: 14.sp,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      bottom: 16.h,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: options.map((String value) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.pop(context, value);
+                          },
+                          child: Container(
+                            height: 30.h,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.w,
+                            ),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              value,
+                              style: context.bodyMedium.copyWith(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }).toList(),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               ),
@@ -82,6 +95,7 @@ class AppDropdownField extends StatelessWidget {
         ).then((String? selectedValue) {
           if (selectedValue != null) {
             controller.text = selectedValue;
+            onChanged?.call(selectedValue);
           }
         });
       },

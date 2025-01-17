@@ -30,13 +30,11 @@ class _AuthUserHistoryBaseViewState extends State<AuthUserHistoryBaseView> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: Text(
-                    'History',
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
+                Text(
+                  'History',
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 40.verticalSpace,

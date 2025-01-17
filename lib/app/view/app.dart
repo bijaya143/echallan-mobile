@@ -2,6 +2,7 @@ import 'package:echalan/core/fonts/fonts.dart';
 import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/auth_user/sign_in/logic/sign_in_cubit.dart';
 import 'package:echalan/feature/auth_user/sign_up/logic/sign_up_cubit.dart';
+import 'package:echalan/feature/guest/find_chalan/presentation/logic/find_chalan_cubit.dart';
 import 'package:echalan/route/app_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -87,6 +88,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SignUpCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FindChalanCubit(),
         ),
       ],
       child: ScreenUtilInit(

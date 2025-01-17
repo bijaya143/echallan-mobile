@@ -30,6 +30,7 @@ class AppTextField extends StatelessWidget {
     this.height,
     this.showCounter = false,
     this.shouldShowErrorText = true,
+    this.prefixText,
   });
 
   final TextEditingController? controller;
@@ -60,6 +61,7 @@ class AppTextField extends StatelessWidget {
   final double? height;
   final bool showCounter;
   final bool shouldShowErrorText;
+  final String? prefixText;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +101,7 @@ class AppTextField extends StatelessWidget {
             textAlignVertical: TextAlignVertical.top,
             decoration: InputDecoration(
               hintText: hintText,
+              prefixText: prefixText,
               hintStyle: hintTextStyle ??
                   TextStyle(
                     color: ColorConstants.disabledColor,
@@ -107,12 +110,12 @@ class AppTextField extends StatelessWidget {
                   ),
               labelText: labelText,
               labelStyle: labelTextStyle ??
-                  context.bodyLarge.copyWith(
-                    fontSize: 14.sp,
-                    color: ColorConstants.disabledColor,
-                    fontWeight: FontWeight.w600,
-                    height: 24.sp / 14.sp,
-                  ),
+                  Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontSize: 14.sp,
+                        color: ColorConstants.disabledColor,
+                        fontWeight: FontWeight.w600,
+                        height: 24.sp / 14.sp,
+                      ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: borderColor),
                 borderRadius: BorderRadius.circular(8.r),
