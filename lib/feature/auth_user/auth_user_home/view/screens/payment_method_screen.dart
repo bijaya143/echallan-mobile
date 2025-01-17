@@ -1,5 +1,6 @@
 import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/auth_user/auth_user_home/logic/payment_method/payment_method_cubit.dart';
+import 'package:echalan/feature/auth_user/auth_user_home/logic/ticket_settlement/ticket_settlement_cubit.dart';
 import 'package:echalan/widgets/app_button.dart';
 import 'package:echalan/widgets/text_app_bar.dart';
 import 'package:echalan/feature/auth_user/auth_user_dashboard/data/dummy_data/payment_method_dummy_data.dart';
@@ -15,8 +16,11 @@ class PaymentMethodScreen extends StatefulWidget {
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PaymentMethodCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => PaymentMethodCubit()),
+        BlocProvider(create: (context) => TicketSettlementCubit()),
+      ],
       child: Scaffold(
         appBar: TextAppBar(
           textLeftSpace: 10.w,
@@ -28,12 +32,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               horizontal: 24.w,
               vertical: 40.h,
             ),
-            child: BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
-              builder: (context, state) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ListView.separated(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // BlocBuilder for PaymentMethodCubit
+                BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
+                  builder: (context, paymentState) {
+                    return ListView.separated(
                       shrinkWrap: true,
                       itemCount:
                           PaymentMethodDummyData.paymentMethodList.length,
@@ -45,8 +50,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                         return PaymentMethodsContainer(
                           image: payment.paymentMethodImage,
                           text: payment.paymentMethod,
-                          isSelected:
-                              state.selectedPaymentMethod?.id == payment.id,
+                          isSelected: paymentState.selectedPaymentMethod?.id ==
+                              payment.id,
                           onTap: () {
                             context
                                 .read<PaymentMethodCubit>()
@@ -54,15 +59,32 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                           },
                         );
                       },
-                    ),
-                    AppButton(
-                      text: 'Pay Now',
+                    );
+                  },
+                ),
+
+                // BlocBuilder for TicketSettlementCubit
+                BlocBuilder<TicketSettlementCubit, TicketSettlementState>(
+                  builder: (context, ticketState) {
+                    return AppButton(
+                      text: ticketState.isLoading ? 'Processing...' : 'Pay Now',
                       onPressed:
-                          state.selectedPaymentMethod != null ? () {} : null,
-                    ),
-                  ],
-                );
-              },
+                          context.read<TicketSettlementCubit>().state.isLoading
+                              ? null
+                              : () {
+                                  context
+                                      .read<TicketSettlementCubit>()
+                                      .initiateEsewaPayment(
+                                        productId: '1d71jd81',
+                                        productName: 'Product One',
+                                        productPrice: '20',
+                                        context: context,
+                                      );
+                                },
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ),

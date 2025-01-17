@@ -29,6 +29,8 @@ import 'package:echalan/feature/traffic/dashboard/view/traffic_dashboard_base_vi
 import 'package:echalan/feature/traffic/forget_password/presentation/view/forget_password_base_view.dart';
 import 'package:echalan/feature/traffic/login/presentation/view/traffic_login_base_view.dart';
 import 'package:echalan/feature/traffic/profile/presentation/view/widget/personal_detail.dart';
+import 'package:echalan/widgets/payment_failed_screen.dart';
+import 'package:echalan/widgets/payment_success_screen.dart';
 
 class AppRouter {
   const AppRouter._();
@@ -70,9 +72,11 @@ class AppRouter {
   static const String findChalanScreen = '/findChalanScreen';
   static const String trafficUpdateScreen = '/trafficUpdateScreen';
   static const String qrScannerScreen = '/qr-scanner';
+  static const String paymentSuccessScreen = '/paymentSuccessScreen';
+  static const String paymentFailedScreen = '/paymentFailedScreen';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    Object? argument = settings.arguments;
+    var argument = settings.arguments;
 
     switch (settings.name) {
       case '/':
@@ -225,6 +229,20 @@ class AppRouter {
           builder: (_) => const QRScannerScreen(),
         );
 
+      case paymentSuccessScreen:
+        return MaterialPageRoute(
+          builder: (_) => PaymentSuccessScreen(
+            message: settings.arguments! as String,
+          ),
+        );
+
+      case paymentFailedScreen:
+        return MaterialPageRoute(
+          builder: (_) => PaymentFailedScreen(
+            message: settings.arguments! as String,
+          ),
+        );
+
       default:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const DefaultScreen(),
@@ -258,7 +276,7 @@ class DefaultScreen extends StatelessWidget {
                   0,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

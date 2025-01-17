@@ -92,7 +92,6 @@ class _RequestOtpBaseScreenState extends State<RequestOtpBaseScreen> {
                             ),
                             24.verticalSpace,
                             Align(
-                              alignment: Alignment.center,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -121,7 +120,7 @@ class _RequestOtpBaseScreenState extends State<RequestOtpBaseScreen> {
                             ),
                           ],
                         ),
-                      ]),
+                      ],),
                 );
               },
             ),

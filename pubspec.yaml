@@ -26,6 +26,10 @@ dependencies:
   qr_flutter: ^4.1.0
   fluttertoast: ^8.2.10
   qr_code_scanner: ^1.0.1
+  fresh_dio: ^0.4.1
+  injectable: ^2.3.2
+  esewa_flutter_sdk:
+    path: ./esewa_flutter_sdk
 
 dev_dependencies:
   bloc_test: ^9.1.7
