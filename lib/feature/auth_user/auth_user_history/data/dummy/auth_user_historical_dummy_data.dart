@@ -56,7 +56,7 @@ final List<AuthUserHistoricalModel> authUserDisputedData = [
     title: 'No Helmet',
     ticketNumber: '1234567890',
     issueDate: '15 Jan, 2024',
-    status: 'Cancelled',
+    status: 'Canceled',
     amount: 'Rs 1000',
     licienceNumber: 'LIC123456',
     vehicleNumber: 'BA12PA3456',

@@ -133,7 +133,7 @@ class _AuthUserProfileBaseViewState extends State<AuthUserProfileBaseView> {
                                 'licenseNumber':
                                     authUserProfileModel.licenseNumber,
                               }),
-                              size: 160.r,
+                              size: 158.r,
                             ),
                           ],
                         ),

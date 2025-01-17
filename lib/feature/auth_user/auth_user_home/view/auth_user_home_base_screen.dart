@@ -28,7 +28,7 @@ class _AuthUserHomeBaseScreenState extends State<AuthUserHomeBaseScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Namaste Rabin,',
+                'Namaste Bijaya,',
                 style: TextStyle(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,

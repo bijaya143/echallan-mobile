@@ -70,8 +70,8 @@ class AppButton extends StatelessWidget {
                 text,
                 style: textStyle ??
                     context.displayLarge.copyWith(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14.sp,
                       color: ColorConstants.backgroundColor,
                     ),
                 textAlign: textAlign ?? TextAlign.center,
