@@ -19,9 +19,10 @@ mixin _$SignInState {
   PasswordFormz get password => throw _privateConstructorUsedError;
   PhoneNumberFormz get phoneNumber => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  bool get isLoginLoading => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
   bool get isPasswordVisible => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
+  AuthResponseModel? get authResponse => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignInStateCopyWith<SignInState> get copyWith =>
@@ -38,9 +39,12 @@ abstract class $SignInStateCopyWith<$Res> {
       {PasswordFormz password,
       PhoneNumberFormz phoneNumber,
       String? message,
-      bool isLoginLoading,
+      bool isLoading,
       bool isPasswordVisible,
-      String? error});
+      String? error,
+      AuthResponseModel? authResponse});
+
+  $AuthResponseModelCopyWith<$Res>? get authResponse;
 }
 
 /// @nodoc
@@ -59,9 +63,10 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
     Object? password = null,
     Object? phoneNumber = null,
     Object? message = freezed,
-    Object? isLoginLoading = null,
+    Object? isLoading = null,
     Object? isPasswordVisible = null,
     Object? error = freezed,
+    Object? authResponse = freezed,
   }) {
     return _then(_value.copyWith(
       password: null == password
@@ -76,9 +81,9 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoginLoading: null == isLoginLoading
-          ? _value.isLoginLoading
-          : isLoginLoading // ignore: cast_nullable_to_non_nullable
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       isPasswordVisible: null == isPasswordVisible
           ? _value.isPasswordVisible
@@ -88,7 +93,23 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      authResponse: freezed == authResponse
+          ? _value.authResponse
+          : authResponse // ignore: cast_nullable_to_non_nullable
+              as AuthResponseModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthResponseModelCopyWith<$Res>? get authResponse {
+    if (_value.authResponse == null) {
+      return null;
+    }
+
+    return $AuthResponseModelCopyWith<$Res>(_value.authResponse!, (value) {
+      return _then(_value.copyWith(authResponse: value) as $Val);
+    });
   }
 }
 
@@ -104,9 +125,13 @@ abstract class _$$SignInStateImplCopyWith<$Res>
       {PasswordFormz password,
       PhoneNumberFormz phoneNumber,
       String? message,
-      bool isLoginLoading,
+      bool isLoading,
       bool isPasswordVisible,
-      String? error});
+      String? error,
+      AuthResponseModel? authResponse});
+
+  @override
+  $AuthResponseModelCopyWith<$Res>? get authResponse;
 }
 
 /// @nodoc
@@ -123,9 +148,10 @@ class __$$SignInStateImplCopyWithImpl<$Res>
     Object? password = null,
     Object? phoneNumber = null,
     Object? message = freezed,
-    Object? isLoginLoading = null,
+    Object? isLoading = null,
     Object? isPasswordVisible = null,
     Object? error = freezed,
+    Object? authResponse = freezed,
   }) {
     return _then(_$SignInStateImpl(
       password: null == password
@@ -140,9 +166,9 @@ class __$$SignInStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoginLoading: null == isLoginLoading
-          ? _value.isLoginLoading
-          : isLoginLoading // ignore: cast_nullable_to_non_nullable
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       isPasswordVisible: null == isPasswordVisible
           ? _value.isPasswordVisible
@@ -152,6 +178,10 @@ class __$$SignInStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      authResponse: freezed == authResponse
+          ? _value.authResponse
+          : authResponse // ignore: cast_nullable_to_non_nullable
+              as AuthResponseModel?,
     ));
   }
 }
@@ -163,9 +193,10 @@ class _$SignInStateImpl extends _SignInState {
       {this.password = const PasswordFormz.pure(),
       this.phoneNumber = const PhoneNumberFormz.pure(),
       this.message = '',
-      this.isLoginLoading = false,
+      this.isLoading = false,
       this.isPasswordVisible = false,
-      this.error = ''})
+      this.error = '',
+      this.authResponse = null})
       : super._();
 
   @override
@@ -179,17 +210,20 @@ class _$SignInStateImpl extends _SignInState {
   final String? message;
   @override
   @JsonKey()
-  final bool isLoginLoading;
+  final bool isLoading;
   @override
   @JsonKey()
   final bool isPasswordVisible;
   @override
   @JsonKey()
   final String? error;
+  @override
+  @JsonKey()
+  final AuthResponseModel? authResponse;
 
   @override
   String toString() {
-    return 'SignInState(password: $password, phoneNumber: $phoneNumber, message: $message, isLoginLoading: $isLoginLoading, isPasswordVisible: $isPasswordVisible, error: $error)';
+    return 'SignInState(password: $password, phoneNumber: $phoneNumber, message: $message, isLoading: $isLoading, isPasswordVisible: $isPasswordVisible, error: $error, authResponse: $authResponse)';
   }
 
   @override
@@ -202,16 +236,18 @@ class _$SignInStateImpl extends _SignInState {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.isLoginLoading, isLoginLoading) ||
-                other.isLoginLoading == isLoginLoading) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.isPasswordVisible, isPasswordVisible) ||
                 other.isPasswordVisible == isPasswordVisible) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.authResponse, authResponse) ||
+                other.authResponse == authResponse));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, password, phoneNumber, message,
-      isLoginLoading, isPasswordVisible, error);
+      isLoading, isPasswordVisible, error, authResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -225,9 +261,10 @@ abstract class _SignInState extends SignInState {
       {final PasswordFormz password,
       final PhoneNumberFormz phoneNumber,
       final String? message,
-      final bool isLoginLoading,
+      final bool isLoading,
       final bool isPasswordVisible,
-      final String? error}) = _$SignInStateImpl;
+      final String? error,
+      final AuthResponseModel? authResponse}) = _$SignInStateImpl;
   const _SignInState._() : super._();
 
   @override
@@ -237,11 +274,13 @@ abstract class _SignInState extends SignInState {
   @override
   String? get message;
   @override
-  bool get isLoginLoading;
+  bool get isLoading;
   @override
   bool get isPasswordVisible;
   @override
   String? get error;
+  @override
+  AuthResponseModel? get authResponse;
   @override
   @JsonKey(ignore: true)
   _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>

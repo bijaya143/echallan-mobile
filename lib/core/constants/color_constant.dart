@@ -26,4 +26,6 @@ class ColorConstants {
   static const Color paymentMethodBorderColor = Color(0xFFC7C9CC);
   static const Color cancelledCardColor = Color(0xFFFF0004);
   static const Color cancelledTextColor = Color(0xFFF5F5F5);
+  static const Color successMessageColor = Color(0xFF00AF50);
+  static const Color errorMessageColor = Color(0xFFFF0004);
 }

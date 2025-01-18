@@ -7,15 +7,15 @@ import 'package:injectable/injectable.dart';
 
 /// Custom exception class for API errors
 class ApiException implements Exception {
+  final String message;
+  final int? statusCode;
+  final dynamic error;
 
   ApiException({
     required this.message,
     this.statusCode,
     this.error,
   });
-  final String message;
-  final int? statusCode;
-  final dynamic error;
 
   @override
   String toString() => 'ApiException: $message';
@@ -23,17 +23,17 @@ class ApiException implements Exception {
 
 /// Model for authentication tokens
 class AuthTokens {
+  final String accessToken;
+  final String refreshToken;
 
   AuthTokens({required this.accessToken, required this.refreshToken});
 
-  factory AuthTokens.fromJson(Map<String, dynamic> json) {
+  factory AuthTokens.fromJson(dynamic json) {
     return AuthTokens(
       accessToken: json['access_token'] as String,
       refreshToken: json['refresh_token'] as String,
     );
   }
-  final String accessToken;
-  final String refreshToken;
 
   Map<String, dynamic> toJson() {
     return {
@@ -58,6 +58,8 @@ class ApiConfig {
 /// Service responsible for handling all API communications
 @singleton
 class ApiService {
+  late final Dio _dio;
+  late final Fresh<AuthTokens> _fresh;
 
   ApiService() {
     _dio = Dio(
@@ -73,24 +75,22 @@ class ApiService {
       ),
     );
 
-    // _fresh = Fresh<AuthTokens>(
-    //   tokenStorage: InMemoryTokenStorage(),
-    //   refreshToken: (token, client) => _refreshToken(token),
-    //   shouldRefresh: _shouldRefreshToken,
-    //   tokenHeader: _buildAuthHeader,
-    // );
+    _fresh = Fresh<AuthTokens>(
+      tokenStorage: InMemoryTokenStorage(),
+      refreshToken: (token, client) => _refreshToken(token),
+      shouldRefresh: _shouldRefreshToken,
+      tokenHeader: _buildAuthHeader,
+    );
 
     _setupInterceptors();
   }
-  late final Dio _dio;
-  late final Fresh<AuthTokens> _fresh;
 
   bool _shouldRefreshToken(Response? response) => response?.statusCode == 401;
 
   Map<String, String> _buildAuthHeader(AuthTokens token) => {
-    ApiConfig.authHeaderKey:
-    '${ApiConfig.bearerPrefix} ${token.accessToken}',
-  };
+        ApiConfig.authHeaderKey:
+            '${ApiConfig.bearerPrefix} ${token.accessToken}',
+      };
 
   void _setupInterceptors() {
     _dio.interceptors.addAll([
@@ -106,24 +106,24 @@ class ApiService {
   }
 
   /// Refresh token implementation
-  // Future<AuthTokens> _refreshToken(AuthTokens? tokens) async {
-  //   try {
-  //     if (tokens?.refreshToken == null) throw Exception('No refresh token');
-  //
-  //     final response = await _dio.post(
-  //       '/auth/refresh',
-  //       data: {'refresh_token': tokens?.refreshToken},
-  //     );
-  //
-  //     if (response.statusCode == 200) {
-  //       return AuthTokens.fromJson(response.data);
-  //     }
-  //     throw Exception('Failed to refresh token');
-  //   } catch (e) {
-  //     await _fresh.clearToken();
-  //     throw Exception('Failed to refresh token');
-  //   }
-  // }
+  Future<AuthTokens> _refreshToken(AuthTokens? tokens) async {
+    try {
+      if (tokens?.refreshToken == null) throw Exception('No refresh token');
+
+      final response = await _dio.post(
+        '/auth/refresh',
+        data: {'refresh_token': tokens?.refreshToken},
+      );
+
+      if (response.statusCode == 200) {
+        return AuthTokens.fromJson(response.data);
+      }
+      throw Exception('Failed to refresh token');
+    } catch (e) {
+      await _fresh.clearToken();
+      throw Exception('Failed to refresh token');
+    }
+  }
 
   /// Generic request handler with error handling
   Future<T> _handleRequest<T>({
@@ -177,7 +177,7 @@ class ApiService {
 
   String _getErrorMessage(dynamic errorData) {
     if (errorData is Map) {
-      return  'Unknown error occurred';
+      return errorData['message'].toString() ?? 'Unknown error occurred';
     }
     return 'Unknown error occurred';
   }
@@ -197,7 +197,8 @@ class ApiService {
   /// GET request
   Future<T> get<T>({
     required String endpoint,
-    required T Function(dynamic data) parseResponse, Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? queryParameters,
+    required T Function(dynamic data) parseResponse,
   }) async {
     return _handleRequest(
       requestFunction: () => _dio.get(
@@ -211,8 +212,9 @@ class ApiService {
   /// POST request
   Future<T> post<T>({
     required String endpoint,
-    required T Function(dynamic data) parseResponse, dynamic data,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
+    required T Function(dynamic data) parseResponse,
   }) async {
     return _handleRequest(
       requestFunction: () => _dio.post(
@@ -227,8 +229,9 @@ class ApiService {
   /// PUT request
   Future<T> put<T>({
     required String endpoint,
-    required T Function(dynamic data) parseResponse, dynamic data,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
+    required T Function(dynamic data) parseResponse,
   }) async {
     return _handleRequest(
       requestFunction: () => _dio.put(
@@ -243,7 +246,8 @@ class ApiService {
   /// DELETE request
   Future<T> delete<T>({
     required String endpoint,
-    required T Function(dynamic data) parseResponse, Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? queryParameters,
+    required T Function(dynamic data) parseResponse,
   }) async {
     return _handleRequest(
       requestFunction: () => _dio.delete(
@@ -257,8 +261,9 @@ class ApiService {
   /// PATCH request
   Future<T> patch<T>({
     required String endpoint,
-    required T Function(dynamic data) parseResponse, dynamic data,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
+    required T Function(dynamic data) parseResponse,
   }) async {
     return _handleRequest(
       requestFunction: () => _dio.patch(
@@ -274,11 +279,12 @@ class ApiService {
   Future<T> uploadFiles<T>({
     required String endpoint,
     required List<MultipartFile> files,
-    required T Function(dynamic data) parseResponse, Map<String, dynamic>? additionalData,
+    Map<String, dynamic>? additionalData,
+    required T Function(dynamic data) parseResponse,
   }) async {
     final formData = FormData();
 
-    for (final file in files) {
+    for (var file in files) {
       formData.files.add(MapEntry('files', file));
     }
 

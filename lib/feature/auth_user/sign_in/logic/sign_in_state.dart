@@ -16,9 +16,10 @@ class SignInState with _$SignInState {
     @Default(PasswordFormz.pure()) PasswordFormz password,
     @Default(PhoneNumberFormz.pure()) PhoneNumberFormz phoneNumber,
     @Default('') String? message,
-    @Default(false) bool isLoginLoading,
+    @Default(false) bool isLoading,
     @Default(false) bool isPasswordVisible,
     @Default('') String? error,
+    @Default(null) AuthResponseModel? authResponse,
   }) = _SignInState;
   const SignInState._();
 }
