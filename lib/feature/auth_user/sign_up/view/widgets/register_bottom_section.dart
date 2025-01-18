@@ -49,7 +49,7 @@ class RegisterBottomSection extends StatelessWidget {
               TextSpan(
                 text: ' Sign in',
                 style: context.titleSmall.copyWith(
-                  color: ColorConstants.textColor,
+                  color: ColorConstants.primaryColor,
                   fontWeight: FontWeight.w500,
                   // decoration: TextDecoration.underline,
                   decorationThickness: 2.h,

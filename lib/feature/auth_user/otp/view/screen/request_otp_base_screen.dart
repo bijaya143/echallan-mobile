@@ -32,95 +32,97 @@ class _RequestOtpBaseScreenState extends State<RequestOtpBaseScreen> {
                     vertical: 24.h,
                   ),
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: 55.h,
-                              ),
-                              child: Align(
-                                child: Text(
-                                  'Request OTP',
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: 55.h,
+                            ),
+                            child: Align(
+                              child: Text(
+                                'Request OTP',
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ),
-                            150.verticalSpace,
-                            AppTextField(
-                              controller:
-                                  context.read<OtpCubit>().phoneController,
-                              labelText: 'Phone Number',
-                              hintText: 'Enter your phone number',
-                              onChanged: (value) {
-                                context
-                                    .read<OtpCubit>()
-                                    .onPhoneNumberChanged(value);
-                              },
-                              errorText: !state.phoneNumber.isPure &&
-                                      state.phoneNumber.isNotValid
-                                  ? state.phoneNumber.error?.explain
-                                  : null,
-                              keyBoardType: TextInputType.phone,
-                              labelTextStyle: context.bodyLarge.copyWith(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                height: 24.sp / 14.sp,
-                              ),
+                          ),
+                          150.verticalSpace,
+                          AppTextField(
+                            controller:
+                                context.read<OtpCubit>().phoneController,
+                            labelText: 'Phone Number',
+                            hintText: 'Enter your phone number',
+                            onChanged: (value) {
+                              context
+                                  .read<OtpCubit>()
+                                  .onPhoneNumberChanged(value);
+                            },
+                            errorText: !state.phoneNumber.isPure &&
+                                    state.phoneNumber.isNotValid
+                                ? state.phoneNumber.error?.explain
+                                : null,
+                            keyBoardType: TextInputType.phone,
+                            labelTextStyle: context.bodyLarge.copyWith(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                              height: 24.sp / 14.sp,
                             ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            AppButton(
-                              text: 'Request OTP',
-                              onPressed: state.canSubmit
-                                  ? () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        AppRouter.otpScreen,
-                                        arguments: false,
-                                      );
-                                    }
-                                  : null,
-                            ),
-                            24.verticalSpace,
-                            Align(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.arrow_back_ios,
-                                    size: 12.w,
-                                    weight: 12.w,
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      context
-                                          .read<OtpCubit>()
-                                          .clearTextControllers();
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text(
-                                      'Return to sign in',
-                                      style: context.bodyLarge.copyWith(
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          AppButton(
+                            text: 'Request OTP',
+                            onPressed: state.canSubmit
+                                ? () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      AppRouter.otpScreen,
+                                      arguments: false,
+                                    );
+                                  }
+                                : null,
+                          ),
+                          24.verticalSpace,
+                          Align(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.arrow_back_ios,
+                                  size: 12.w,
+                                  weight: 12.w,
+                                  color: ColorConstants.primaryColor,
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    context
+                                        .read<OtpCubit>()
+                                        .clearTextControllers();
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    'Return to sign in',
+                                    style: context.bodyLarge.copyWith(
                                         fontSize: 14.sp,
                                         fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
+                                        color: ColorConstants.primaryColor),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ],),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

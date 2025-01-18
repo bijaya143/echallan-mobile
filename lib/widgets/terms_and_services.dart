@@ -20,11 +20,12 @@ class TermsAndServicesText extends StatelessWidget {
             TextSpan(
               text: 'terms of use',
               style: context.titleSmall.copyWith(
-                color: ColorConstants.textColor,
+                color: ColorConstants.primaryColor,
                 fontWeight: FontWeight.w500,
                 decoration: TextDecoration.underline,
                 decorationThickness: 2.h,
                 decorationStyle: TextDecorationStyle.solid,
+                decorationColor: ColorConstants.primaryColor,
                 fontSize: 12.sp,
               ),
               recognizer: TapGestureRecognizer()
@@ -45,12 +46,13 @@ class TermsAndServicesText extends StatelessWidget {
             TextSpan(
               text: 'privacy policy',
               style: context.titleSmall.copyWith(
-                color: ColorConstants.textColor,
+                color: ColorConstants.primaryColor,
                 fontWeight: FontWeight.w500,
                 fontSize: 12.sp,
                 decoration: TextDecoration.underline,
                 decorationThickness: 2.h,
                 decorationStyle: TextDecorationStyle.solid,
+                decorationColor: ColorConstants.primaryColor,
                 height: 1.5.h,
               ),
               recognizer: TapGestureRecognizer()

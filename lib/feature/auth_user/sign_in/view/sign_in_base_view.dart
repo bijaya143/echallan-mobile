@@ -88,7 +88,7 @@ class _SignInBaseViewState extends State<SignInBaseView> {
                                   TextSpan(
                                     text: 'Get started',
                                     style: context.titleSmall.copyWith(
-                                      color: ColorConstants.textColor,
+                                      color: ColorConstants.primaryColor,
                                       fontWeight: FontWeight.w500,
                                       // decoration: TextDecoration.underline,
                                       decorationThickness: 2.h,
@@ -176,7 +176,7 @@ class _SignInBaseViewState extends State<SignInBaseView> {
                                   'Forget Password ?',
                                   style: context.bodyLarge.copyWith(
                                     fontSize: 14.sp,
-                                    color: ColorConstants.disabledColor,
+                                    color: ColorConstants.primaryColor,
                                     fontWeight: FontWeight.w400,
                                     height: 24.sp / 14.sp,
                                   ),

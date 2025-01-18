@@ -103,7 +103,7 @@ class _TrafficLoginBaseViewState extends State<TrafficLoginBaseView> {
                               'Forget Password ?',
                               style: context.bodyLarge.copyWith(
                                 fontSize: 14.sp,
-                                color: ColorConstants.disabledColor,
+                                color: ColorConstants.primaryColor,
                                 fontWeight: FontWeight.w400,
                                 height: 24.sp / 14.sp,
                               ),
