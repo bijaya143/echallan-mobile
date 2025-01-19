@@ -177,9 +177,7 @@ class AppRouter {
 
       case otpScreen:
         return MaterialPageRoute(
-          builder: (_) => OtpBaseView(
-            isFromRegisterScreen: settings.arguments! as bool,
-          ),
+          builder: (_) => const OtpBaseView(),
         );
 
       case authUserCreateNewPasswordScreen:

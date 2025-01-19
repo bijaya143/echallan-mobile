@@ -28,6 +28,7 @@ class SignUpState with _$SignUpState {
     @Default(false) bool isConfirmPasswordVisible,
     @Default(false) bool isLoginLoading,
     @Default('') String? error,
+    @Default(null) AuthResponseModel? authResponse,
   }) = _SignUpState;
   const SignUpState._();
 }

@@ -27,6 +27,7 @@ mixin _$SignUpState {
   bool get isConfirmPasswordVisible => throw _privateConstructorUsedError;
   bool get isLoginLoading => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
+  AuthResponseModel? get authResponse => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SignUpStateCopyWith<SignUpState> get copyWith =>
@@ -50,7 +51,10 @@ abstract class $SignUpStateCopyWith<$Res> {
       bool isPasswordVisible,
       bool isConfirmPasswordVisible,
       bool isLoginLoading,
-      String? error});
+      String? error,
+      AuthResponseModel? authResponse});
+
+  $AuthResponseModelCopyWith<$Res>? get authResponse;
 }
 
 /// @nodoc
@@ -77,6 +81,7 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
     Object? isConfirmPasswordVisible = null,
     Object? isLoginLoading = null,
     Object? error = freezed,
+    Object? authResponse = freezed,
   }) {
     return _then(_value.copyWith(
       fullName: null == fullName
@@ -123,7 +128,23 @@ class _$SignUpStateCopyWithImpl<$Res, $Val extends SignUpState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      authResponse: freezed == authResponse
+          ? _value.authResponse
+          : authResponse // ignore: cast_nullable_to_non_nullable
+              as AuthResponseModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuthResponseModelCopyWith<$Res>? get authResponse {
+    if (_value.authResponse == null) {
+      return null;
+    }
+
+    return $AuthResponseModelCopyWith<$Res>(_value.authResponse!, (value) {
+      return _then(_value.copyWith(authResponse: value) as $Val);
+    });
   }
 }
 
@@ -146,7 +167,11 @@ abstract class _$$SignUpStateImplCopyWith<$Res>
       bool isPasswordVisible,
       bool isConfirmPasswordVisible,
       bool isLoginLoading,
-      String? error});
+      String? error,
+      AuthResponseModel? authResponse});
+
+  @override
+  $AuthResponseModelCopyWith<$Res>? get authResponse;
 }
 
 /// @nodoc
@@ -171,6 +196,7 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
     Object? isConfirmPasswordVisible = null,
     Object? isLoginLoading = null,
     Object? error = freezed,
+    Object? authResponse = freezed,
   }) {
     return _then(_$SignUpStateImpl(
       fullName: null == fullName
@@ -217,6 +243,10 @@ class __$$SignUpStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      authResponse: freezed == authResponse
+          ? _value.authResponse
+          : authResponse // ignore: cast_nullable_to_non_nullable
+              as AuthResponseModel?,
     ));
   }
 }
@@ -235,7 +265,8 @@ class _$SignUpStateImpl extends _SignUpState with DiagnosticableTreeMixin {
       this.isPasswordVisible = false,
       this.isConfirmPasswordVisible = false,
       this.isLoginLoading = false,
-      this.error = ''})
+      this.error = '',
+      this.authResponse = null})
       : super._();
 
   @override
@@ -271,10 +302,13 @@ class _$SignUpStateImpl extends _SignUpState with DiagnosticableTreeMixin {
   @override
   @JsonKey()
   final String? error;
+  @override
+  @JsonKey()
+  final AuthResponseModel? authResponse;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SignUpState(fullName: $fullName, phoneNumber: $phoneNumber, password: $password, isRegisterSuccess: $isRegisterSuccess, isRegisterLoading: $isRegisterLoading, message: $message, showVisibilityIcon: $showVisibilityIcon, isPasswordVisible: $isPasswordVisible, isConfirmPasswordVisible: $isConfirmPasswordVisible, isLoginLoading: $isLoginLoading, error: $error)';
+    return 'SignUpState(fullName: $fullName, phoneNumber: $phoneNumber, password: $password, isRegisterSuccess: $isRegisterSuccess, isRegisterLoading: $isRegisterLoading, message: $message, showVisibilityIcon: $showVisibilityIcon, isPasswordVisible: $isPasswordVisible, isConfirmPasswordVisible: $isConfirmPasswordVisible, isLoginLoading: $isLoginLoading, error: $error, authResponse: $authResponse)';
   }
 
   @override
@@ -293,7 +327,8 @@ class _$SignUpStateImpl extends _SignUpState with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty(
           'isConfirmPasswordVisible', isConfirmPasswordVisible))
       ..add(DiagnosticsProperty('isLoginLoading', isLoginLoading))
-      ..add(DiagnosticsProperty('error', error));
+      ..add(DiagnosticsProperty('error', error))
+      ..add(DiagnosticsProperty('authResponse', authResponse));
   }
 
   @override
@@ -321,7 +356,9 @@ class _$SignUpStateImpl extends _SignUpState with DiagnosticableTreeMixin {
                 other.isConfirmPasswordVisible == isConfirmPasswordVisible) &&
             (identical(other.isLoginLoading, isLoginLoading) ||
                 other.isLoginLoading == isLoginLoading) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.authResponse, authResponse) ||
+                other.authResponse == authResponse));
   }
 
   @override
@@ -337,7 +374,8 @@ class _$SignUpStateImpl extends _SignUpState with DiagnosticableTreeMixin {
       isPasswordVisible,
       isConfirmPasswordVisible,
       isLoginLoading,
-      error);
+      error,
+      authResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -358,7 +396,8 @@ abstract class _SignUpState extends SignUpState {
       final bool isPasswordVisible,
       final bool isConfirmPasswordVisible,
       final bool isLoginLoading,
-      final String? error}) = _$SignUpStateImpl;
+      final String? error,
+      final AuthResponseModel? authResponse}) = _$SignUpStateImpl;
   const _SignUpState._() : super._();
 
   @override
@@ -383,6 +422,8 @@ abstract class _SignUpState extends SignUpState {
   bool get isLoginLoading;
   @override
   String? get error;
+  @override
+  AuthResponseModel? get authResponse;
   @override
   @JsonKey(ignore: true)
   _$$SignUpStateImplCopyWith<_$SignUpStateImpl> get copyWith =>

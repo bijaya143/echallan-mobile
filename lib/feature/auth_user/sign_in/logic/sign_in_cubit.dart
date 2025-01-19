@@ -12,6 +12,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sign_in_cubit.freezed.dart';
 part 'sign_in_state.dart';
 
+// flutter pub run build_runner build --delete-conflicting-outputs
+
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(const SignInState());
   final ApiService _apiService = di<ApiService>();

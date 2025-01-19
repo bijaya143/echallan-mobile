@@ -356,7 +356,6 @@ UserDataModel _$UserDataModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserDataModel {
   String get id => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -371,7 +370,7 @@ abstract class $UserDataModelCopyWith<$Res> {
           UserDataModel value, $Res Function(UserDataModel) then) =
       _$UserDataModelCopyWithImpl<$Res, UserDataModel>;
   @useResult
-  $Res call({String id, String? email, String phone});
+  $Res call({String id, String phone});
 }
 
 /// @nodoc
@@ -388,7 +387,6 @@ class _$UserDataModelCopyWithImpl<$Res, $Val extends UserDataModel>
   @override
   $Res call({
     Object? id = null,
-    Object? email = freezed,
     Object? phone = null,
   }) {
     return _then(_value.copyWith(
@@ -396,10 +394,6 @@ class _$UserDataModelCopyWithImpl<$Res, $Val extends UserDataModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -416,7 +410,7 @@ abstract class _$$UserDataModelImplCopyWith<$Res>
       __$$UserDataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String? email, String phone});
+  $Res call({String id, String phone});
 }
 
 /// @nodoc
@@ -431,7 +425,6 @@ class __$$UserDataModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? email = freezed,
     Object? phone = null,
   }) {
     return _then(_$UserDataModelImpl(
@@ -439,10 +432,6 @@ class __$$UserDataModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -454,8 +443,7 @@ class __$$UserDataModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserDataModelImpl implements _UserDataModel {
-  const _$UserDataModelImpl(
-      {required this.id, this.email, required this.phone});
+  const _$UserDataModelImpl({required this.id, required this.phone});
 
   factory _$UserDataModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDataModelImplFromJson(json);
@@ -463,13 +451,11 @@ class _$UserDataModelImpl implements _UserDataModel {
   @override
   final String id;
   @override
-  final String? email;
-  @override
   final String phone;
 
   @override
   String toString() {
-    return 'UserDataModel(id: $id, email: $email, phone: $phone)';
+    return 'UserDataModel(id: $id, phone: $phone)';
   }
 
   @override
@@ -478,13 +464,12 @@ class _$UserDataModelImpl implements _UserDataModel {
         (other.runtimeType == runtimeType &&
             other is _$UserDataModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, phone);
+  int get hashCode => Object.hash(runtimeType, id, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -503,7 +488,6 @@ class _$UserDataModelImpl implements _UserDataModel {
 abstract class _UserDataModel implements UserDataModel {
   const factory _UserDataModel(
       {required final String id,
-      final String? email,
       required final String phone}) = _$UserDataModelImpl;
 
   factory _UserDataModel.fromJson(Map<String, dynamic> json) =
@@ -511,8 +495,6 @@ abstract class _UserDataModel implements UserDataModel {
 
   @override
   String get id;
-  @override
-  String? get email;
   @override
   String get phone;
   @override
