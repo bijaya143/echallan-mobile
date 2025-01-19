@@ -12,6 +12,7 @@ import 'package:echalan/feature/auth_user/new_password/view/auth_user_create_new
 import 'package:echalan/feature/auth_user/notification/presentation/view/notification_base_view.dart';
 import 'package:echalan/feature/auth_user/otp/view/otp_base_view.dart';
 import 'package:echalan/feature/auth_user/otp/view/screen/request_otp_base_screen.dart';
+import 'package:echalan/feature/auth_user/otp/view/screen/verify_register_otp_view.dart';
 import 'package:echalan/feature/auth_user/sign_in/view/sign_in_base_view.dart';
 import 'package:echalan/feature/auth_user/sign_up/view/register_base_view.dart';
 import 'package:echalan/feature/guest/find_chalan/presentation/view/find_chalan_form.dart';
@@ -53,6 +54,7 @@ class AppRouter {
   static const String signInScreen = '/signInScreen';
   static const String registerScreen = '/registerScreen';
   static const String otpScreen = '/otpScreen';
+  static const String verifyRegisterOtpScreen = '/verifyRegisterOtpScreen';
   static const String requestOtpScreen = '/requestOtpScreen';
   static const String authUserCreateNewPasswordScreen =
       '/authUserCreateNewPasswordScreen';
@@ -178,6 +180,11 @@ class AppRouter {
       case otpScreen:
         return MaterialPageRoute(
           builder: (_) => const OtpBaseView(),
+        );
+
+      case verifyRegisterOtpScreen:
+        return MaterialPageRoute(
+          builder: (_) => const VerifyRegisterOtpView(),
         );
 
       case authUserCreateNewPasswordScreen:

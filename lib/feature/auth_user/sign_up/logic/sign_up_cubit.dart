@@ -126,7 +126,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       // Navigate to the otp screen
       await Navigator.pushReplacementNamed(
         context,
-        AppRouter.otpScreen,
+        AppRouter.verifyRegisterOtpScreen,
       );
     } on ApiException catch (e) {
       emit(state.copyWith(
