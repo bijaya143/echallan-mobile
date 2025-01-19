@@ -1,3 +1,3 @@
 class ApiEndpoint {
-  static const String BASE_URL = 'http://192.168.1.6:3001/';
+  static const String BASE_URL = 'http://192.168.1.5:3001/';
 }

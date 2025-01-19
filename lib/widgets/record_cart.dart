@@ -76,7 +76,7 @@ class RecordCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _CardItem(
-                        title: 'Ticket No.',
+                        title: 'Challan No.',
                         value: ticketNumber,
                       ),
                       4.verticalSpace,

@@ -40,12 +40,12 @@ class _ViolationDetailScreenState extends State<ViolationDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DetailTextCard(
-                        title: 'Ticket No.',
+                        title: 'Challan No.',
                         value: widget.violationRecordModel.ticketNumber,
                       ),
                       16.verticalSpace,
                       DetailTextCard(
-                        title: 'Issue Date',
+                        title: 'Issued Date',
                         value: widget.violationRecordModel.issueDate,
                       ),
                       16.verticalSpace,
@@ -67,14 +67,14 @@ class _ViolationDetailScreenState extends State<ViolationDetailScreen> {
                   ),
                   Column(
                     children: [
-                      Text(
-                        'You will be fined after ${widget.violationRecordModel.issueDate}',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      24.verticalSpace,
+                      // Text(
+                      //   'You will be fined after ${widget.violationRecordModel.issueDate}',
+                      //   style: TextStyle(
+                      //     fontSize: 14.sp,
+                      //     fontWeight: FontWeight.w400,
+                      //   ),
+                      // ),
+                      // 24.verticalSpace,
                       AppButton(
                         text: 'Pay Now',
                         onPressed: () {

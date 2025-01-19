@@ -77,7 +77,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                       .initiateEsewaPayment(
                                         productId: '1d71jd81',
                                         productName: 'Product One',
-                                        productPrice: '20',
+                                        productPrice: '1500',
                                         context: context,
                                       );
                                 },

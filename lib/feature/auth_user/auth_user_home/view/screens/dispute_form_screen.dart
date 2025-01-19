@@ -43,13 +43,13 @@ class _DisputeFormScreenState extends State<DisputeFormScreen> {
                   children: [
                     50.verticalSpace,
                     DetailTextCard(
-                      title: 'Ticket No.',
+                      title: 'Challan No.',
                       value: widget.violationRecordModel.ticketNumber,
                     ),
                     16.verticalSpace,
                     DetailTextCard(
-                      title: 'Ticket No.',
-                      value: widget.violationRecordModel.ticketNumber,
+                      title: 'Issued Date',
+                      value: widget.violationRecordModel.issueDate,
                     ),
                     40.verticalSpace,
                     Text(
