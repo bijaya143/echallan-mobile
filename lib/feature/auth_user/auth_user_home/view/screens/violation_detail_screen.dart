@@ -26,7 +26,6 @@ class _ViolationDetailScreenState extends State<ViolationDetailScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Single Elegant Card for Details
                 Card(
                   color: ColorConstants.secondaryColor,
                   shape: RoundedRectangleBorder(
