@@ -47,7 +47,7 @@ class _TrafficHomeBaseViewState extends State<TrafficHomeBaseView> {
           ),
           24.verticalSpace,
           ActionCard(
-            title: 'Issue a ticket from here',
+            title: 'Issue a Challan',
             subtitle: 'Issue a challan to impose a fine on the driver.',
             buttonText: 'Scan user details',
             onPressed: () {
