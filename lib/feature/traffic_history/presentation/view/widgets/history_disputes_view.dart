@@ -1,6 +1,5 @@
 import 'package:echalan/feature/traffic_history/data/model/historical_model.dart';
 import 'package:echalan/route/app_route.dart';
-import 'package:flutter/material.dart';
 import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/traffic_history/data/dummy_data/historical_dummy_data.dart';
 
