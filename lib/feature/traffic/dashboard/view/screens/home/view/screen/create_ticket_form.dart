@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:echalan/core/constants/dropdown_constants.dart';
 import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/traffic/dashboard/data/model/qr_code_data_model.dart';
@@ -12,6 +13,7 @@ class CreateTicketForm extends StatefulWidget {
   });
 
   final QRCodeDataModel qrCodeDataModel;
+
   @override
   State<CreateTicketForm> createState() => _CreateTicketFormState();
 }
@@ -25,11 +27,57 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
   final TextEditingController amountController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  // Sample mapping of reasons to amounts
+  final Map<String, String> reasonAmountMap = {
+    "Over Speeding": "500",
+    "Wrong Parking": "300",
+    "Red Light Violation": "1000",
+    "No Helmet": "200",
+  };
+
   @override
   void initState() {
     super.initState();
     nameController.text = widget.qrCodeDataModel.fullName;
     licenseNumberController.text = widget.qrCodeDataModel.licenseNumber;
+  }
+
+  void _updateAmount(String? reason) {
+    if (reason != null) {
+      setState(() {
+        reasonController.text = reason;
+        amountController.text = reasonAmountMap[reason] ?? "";
+      });
+    }
+  }
+
+  void _showPopup() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Ticket Summary"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Full Name: ${nameController.text}"),
+              Text("License Number: ${licenseNumberController.text}"),
+              Text("Vehicle Number: ${vehicleNumberController.text}"),
+              Text("Serving District: ${districtController.text}"),
+              Text("Reason: ${reasonController.text}"),
+              Text("Amount: ${amountController.text}"),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -82,7 +130,7 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                               readOnly: true,
                               validator: (value) {
                                 if (value?.isEmpty ?? true) {
-                                  return 'Please enter your full name';
+                                  return 'Full name is required';
                                 }
                                 return null;
                               },
@@ -96,7 +144,7 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                               readOnly: true,
                               validator: (value) {
                                 if (value?.isEmpty ?? true) {
-                                  return 'Please enter your license number';
+                                  return 'License number is required';
                                 }
                                 return null;
                               },
@@ -108,7 +156,7 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                               hintText: 'Enter your vehicle number',
                               validator: (value) {
                                 if (value?.isEmpty ?? true) {
-                                  return 'Please enter your vehicle number';
+                                  return 'Vehicle number is required';
                                 }
                                 return null;
                               },
@@ -126,15 +174,19 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                               labelText: 'Reason',
                               hintText: 'Select Reason',
                               options: DropDownConstants.reasonOptions,
+                              onChanged: (value) {
+                                _updateAmount(value);
+                              },
                             ),
                             24.verticalSpace,
                             AppTextField(
                               controller: amountController,
                               labelText: 'Amount',
-                              hintText: 'Enter the amount',
+                              hintText: 'Select amount',
+                              keyBoardType: TextInputType.number,
                               validator: (value) {
                                 if (value?.isEmpty ?? true) {
-                                  return 'Please enter the amount';
+                                  return 'Amount is required';
                                 }
                                 return null;
                               },
@@ -150,7 +202,11 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                   left: 0,
                   right: 0,
                   child: AppButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        _showPopup();
+                      }
+                    },
                     text: 'Create',
                   ),
                 ),
