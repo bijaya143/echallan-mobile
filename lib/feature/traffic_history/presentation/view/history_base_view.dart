@@ -1,7 +1,5 @@
 import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/history/presentation/logic/history_cubit.dart';
-import 'package:echalan/feature/history/presentation/view/widgets/history_disputes_view.dart';
-import 'package:echalan/feature/history/presentation/view/widgets/history_records_view.dart';
 import 'package:echalan/feature/history/presentation/view/widgets/history_tab.dart';
 import 'package:echalan/feature/traffic_history/presentation/view/widgets/history_disputes_view.dart';
 import 'package:echalan/feature/traffic_history/presentation/view/widgets/history_records_view.dart';
