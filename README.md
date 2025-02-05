@@ -1,8 +1,9 @@
-# Echalan
+# Echallan
+
+An online Traffic Fine Management System developed by Bijaya Majhi.
 In order to run the project, you need to have the following versions:
 Flutter Version: 3.24.0
 Dart Version: 3.5.0
-
 
 Mobile app for echalan service
 
