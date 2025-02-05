@@ -14,6 +14,18 @@ class AuthUserHomeBaseScreen extends StatefulWidget {
 }
 
 class _AuthUserHomeBaseScreenState extends State<AuthUserHomeBaseScreen> {
+  bool _isLoading = true; // Add this state variable at the top of _AuthUserHomeBaseScreenState.
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -80,14 +92,18 @@ class _AuthUserHomeBaseScreenState extends State<AuthUserHomeBaseScreen> {
             child: Text(
               'Violation Records',
               style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
           24.verticalSpace,
           Expanded(
-            child: ListView.builder(
+            child: _isLoading
+                ? Center(
+              child: CircularProgressIndicator(),
+            )
+                : ListView.builder(
               itemCount: violationRecordDummyData.length,
               itemBuilder: (context, index) {
                 return RecordCard(

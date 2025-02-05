@@ -42,6 +42,14 @@ class _ViolationDetailScreenState extends State<ViolationDetailScreen> {
                       DetailTextCard(
                         title: 'Challan No.',
                         value: widget.violationRecordModel.ticketNumber,
+                        trailing: Tooltip(
+                          message: 'This is your unique Challan number.',
+                          child: Icon(
+                            Icons.info_outline,
+                            size: 20.sp,
+                            color: ColorConstants.disabledTextColor,
+                          ),
+                        ),
                       ),
                       16.verticalSpace,
                       DetailTextCard(
