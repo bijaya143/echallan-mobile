@@ -39,7 +39,7 @@ class TrafficTicketDetail extends StatelessWidget {
                 _detailRow("Vehicle No.", historicalModel.vehicleNumber),
                 _detailRow("District", historicalModel.district),
                 _detailRow("Reason", historicalModel.reason),
-                _detailRow("Amount", "₹${historicalModel.amount}"),
+                _detailRow("Amount", "${historicalModel.amount}"),
                 SizedBox(height: 12.h),
 
                 // Ticket Status with Badge
