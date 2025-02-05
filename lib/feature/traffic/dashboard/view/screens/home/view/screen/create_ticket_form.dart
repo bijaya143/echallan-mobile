@@ -1,3 +1,4 @@
+import 'package:echalan/route/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:echalan/core/constants/dropdown_constants.dart';
 import 'package:echalan/core/imports/ui_imports.dart';
@@ -71,8 +72,21 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("OK"),
+              onPressed: () {
+                // Show Snackbar
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Challan created successfully'),
+                    backgroundColor: ColorConstants.successMessageColor,
+                  ),
+                );
+
+                Navigator.pushReplacementNamed(
+                  context,
+                  AppRouter.trafficDashboardScreen,
+                );
+              },
+              child: const Text('Confirm'),
             ),
           ],
         );
