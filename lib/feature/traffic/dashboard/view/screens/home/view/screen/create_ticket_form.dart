@@ -178,8 +178,8 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
                             24.verticalSpace,
                             AppDropdownField(
                               controller: districtController,
-                              labelText: 'Serving District',
-                              hintText: 'Select Serving District',
+                              labelText: 'District',
+                              hintText: 'Select District',
                               options: DropDownConstants.districtOptions,
                             ),
                             24.verticalSpace,
