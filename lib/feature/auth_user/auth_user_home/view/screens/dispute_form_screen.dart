@@ -1,4 +1,3 @@
-import 'package:echalan/core/extensions/pop_extension.dart';
 import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/auth_user/auth_user_dashboard/data/model/violation_record_model.dart';
 import 'package:echalan/route/app_route.dart';
