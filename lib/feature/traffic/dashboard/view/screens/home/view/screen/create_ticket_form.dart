@@ -57,40 +57,105 @@ class _CreateTicketFormState extends State<CreateTicketForm> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Ticket Summary"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Full Name: ${nameController.text}"),
-              Text("License Number: ${licenseNumberController.text}"),
-              Text("Vehicle Number: ${vehicleNumberController.text}"),
-              Text("Serving District: ${districtController.text}"),
-              Text("Reason: ${reasonController.text}"),
-              Text("Amount: ${amountController.text}"),
-            ],
+          backgroundColor: ColorConstants.backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.r), // Rounded corners
+          ),
+          title: const Text(
+            "Ticket Summary",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: ColorConstants.primaryColor,
+            ),
+          ),
+          content: Padding(
+            padding: EdgeInsets.all(12.w),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildDetailText("Full Name:", nameController.text),
+                _buildDetailText(
+                    "License Number:", licenseNumberController.text),
+                _buildDetailText(
+                    "Vehicle Number:", vehicleNumberController.text),
+                _buildDetailText("Serving District:", districtController.text),
+                _buildDetailText("Reason:", reasonController.text),
+                _buildDetailText("Amount:", amountController.text),
+              ],
+            ),
           ),
           actions: [
-            TextButton(
-              onPressed: () {
-                // Show Snackbar
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Challan created successfully'),
-                    backgroundColor: ColorConstants.successMessageColor,
-                  ),
-                );
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Show Snackbar
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Challan created successfully'),
+                      backgroundColor: ColorConstants.successMessageColor,
+                    ),
+                  );
 
-                Navigator.pushReplacementNamed(
-                  context,
-                  AppRouter.trafficDashboardScreen,
-                );
-              },
-              child: const Text('Confirm'),
+                  Navigator.pushReplacementNamed(
+                    context,
+                    AppRouter.trafficDashboardScreen,
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorConstants.primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 12.h, horizontal: 24.w),
+                ),
+                child: const Text(
+                  'Confirm',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ],
         );
       },
+    );
+  }
+
+  Widget _buildDetailText(String title, String value) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 8.h),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "$title ",
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+              color: ColorConstants.disabledTextColor,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w400,
+                color: ColorConstants.textColor,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
