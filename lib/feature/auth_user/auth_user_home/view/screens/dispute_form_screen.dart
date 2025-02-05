@@ -1,7 +1,6 @@
 import 'package:echalan/core/extensions/pop_extension.dart';
 import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/auth_user/auth_user_dashboard/data/model/violation_record_model.dart';
-import 'package:echalan/feature/auth_user/new_password/view/auth_user_create_new_password.dart';
 import 'package:echalan/route/app_route.dart';
 import 'package:echalan/widgets/app_button.dart';
 import 'package:echalan/widgets/detail_text_card.dart';
