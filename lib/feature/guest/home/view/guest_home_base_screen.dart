@@ -76,14 +76,14 @@ class _GuestHomeBaseScreenState extends State<GuestHomeBaseScreen> {
                     children: [
                       Expanded(
                         child: RecommendedCard(
-                          title: 'Traffic FM',
+                          title: 'Traffic News',
                           onTap: () {},
                         ),
                       ),
                       8.horizontalSpace,
                       Expanded(
                         child: RecommendedCard(
-                          title: 'Traffic update',
+                          title: 'Road Traffic',
                           onTap: () {
                             Navigator.pushNamed(
                               context,

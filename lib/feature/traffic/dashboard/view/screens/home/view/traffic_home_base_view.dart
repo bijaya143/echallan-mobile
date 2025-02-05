@@ -1,4 +1,5 @@
 import 'package:echalan/core/imports/ui_imports.dart';
+import 'package:echalan/feature/guest/home/view/guest_home_base_screen.dart';
 import 'package:echalan/feature/traffic/dashboard/view/widgets/action_card.dart';
 import 'package:echalan/route/app_route.dart';
 
@@ -61,6 +62,51 @@ class _TrafficHomeBaseViewState extends State<TrafficHomeBaseView> {
               //   AppRouter.createTicketScreen,
               // );
             },
+          ),
+          24.verticalSpace,
+          Text(
+            'Recommended for you',
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          4.verticalSpace,
+          Text(
+            'try our new features',
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: ColorConstants.disabledColor,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          16.verticalSpace,
+          Row(
+            children: [
+              Expanded(
+                child: RecommendedCard(
+                  title: 'Traffic News',
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.trafficUpdateScreen,
+                    );
+                  },
+                ),
+              ),
+              8.horizontalSpace,
+              Expanded(
+                child: RecommendedCard(
+                  title: 'Road Traffic',
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      AppRouter.trafficUpdateScreen,
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ],
       ),
