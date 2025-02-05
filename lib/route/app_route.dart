@@ -30,6 +30,8 @@ import 'package:echalan/feature/traffic/dashboard/view/traffic_dashboard_base_vi
 import 'package:echalan/feature/traffic/forget_password/presentation/view/forget_password_base_view.dart';
 import 'package:echalan/feature/traffic/login/presentation/view/traffic_login_base_view.dart';
 import 'package:echalan/feature/traffic/profile/presentation/view/widget/personal_detail.dart';
+import 'package:echalan/feature/traffic_history/data/model/historical_model.dart';
+import 'package:echalan/feature/traffic_history/presentation/view/widgets/ticket_detail.dart';
 import 'package:echalan/widgets/payment_failed_screen.dart';
 import 'package:echalan/widgets/payment_success_screen.dart';
 
@@ -50,6 +52,7 @@ class AppRouter {
   static const String trafficDashboardScreen = '/trafficDashboardScreen';
   static const String createTicketScreen = '/createTicketScreen';
   static const String ticketDetailScreen = '/ticketDetailScreen';
+  static const String trafficTicketDetailScreen = '/trafficTicketDetailScreen';
   static const String personalDetailScreen = '/personalDetailScreen';
   static const String signInScreen = '/signInScreen';
   static const String registerScreen = '/registerScreen';
@@ -196,6 +199,13 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => TicketDetail(
             historicalModel: argument! as HistoricalModel,
+          ),
+        );
+
+      case trafficTicketDetailScreen:
+        return MaterialPageRoute(
+          builder: (_) => TrafficTicketDetail(
+            historicalModel: argument! as TrafficHistoricalModel,
           ),
         );
 

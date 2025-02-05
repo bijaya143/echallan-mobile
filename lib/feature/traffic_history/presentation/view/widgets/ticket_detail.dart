@@ -1,16 +1,16 @@
 import 'package:echalan/core/imports/ui_imports.dart';
-import 'package:echalan/feature/history/data/model/historical_model.dart';
+import 'package:echalan/feature/traffic_history/data/model/historical_model.dart';
 import 'package:echalan/widgets/app_text_field.dart';
 
-class TicketDetail extends StatefulWidget {
-  const TicketDetail({super.key, required this.historicalModel});
-  final HistoricalModel historicalModel;
+class TrafficTicketDetail extends StatefulWidget {
+  const TrafficTicketDetail({super.key, required this.historicalModel});
+  final TrafficHistoricalModel historicalModel;
 
   @override
-  State<TicketDetail> createState() => _TicketDetailState();
+  State<TrafficTicketDetail> createState() => _TrafficTicketDetailState();
 }
 
-class _TicketDetailState extends State<TicketDetail> {
+class _TrafficTicketDetailState extends State<TrafficTicketDetail> {
   @override
   void initState() {
     super.initState();

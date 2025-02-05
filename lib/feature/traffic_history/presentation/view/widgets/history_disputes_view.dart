@@ -1,9 +1,9 @@
 import 'package:echalan/core/imports/ui_imports.dart';
-import 'package:echalan/feature/history/data/dummy_data/historical_dummy_data.dart';
+import 'package:echalan/feature/traffic_history/data/dummy_data/historical_dummy_data.dart';
 import 'package:echalan/route/app_route.dart';
 
-class HistoryDisputesView extends StatelessWidget {
-  const HistoryDisputesView({super.key});
+class TrafficHistoryDisputesView extends StatelessWidget {
+  const TrafficHistoryDisputesView({super.key});
 
   Color _getStatusColor(String status) {
     switch (status.toLowerCase()) {
@@ -38,14 +38,14 @@ class HistoryDisputesView extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: disputedData.length,
+        itemCount: trafficDisputedData.length,
         itemBuilder: (context, index) {
-          final disputedModel = disputedData[index];
+          final disputedModel = trafficDisputedData[index];
           return GestureDetector(
             onTap: () {
               Navigator.pushNamed(
                 context,
-                AppRouter.ticketDetailScreen,
+                AppRouter.trafficTicketDetailScreen,
                 arguments: disputedModel,
               );
             },
@@ -80,73 +80,22 @@ class HistoryDisputesView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CardItems(
-                              title: 'Challan No.:',
+                              title: 'Challan No.',
                               value: disputedModel.ticketNumber,
                             ),
                             4.verticalSpace,
                             CardItems(
-                              title: 'Issue Date:',
+                              title: 'Issue Date',
                               value: disputedModel.issueDate,
                             ),
                             4.verticalSpace,
                             CardItems(
-                              title: 'Amount:',
+                              title: 'Amount',
                               value: disputedModel.amount,
                             ),
                           ],
                         ),
                       ),
-                      Column(
-                        children: [
-                          Container(
-                            width: 96.w,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16.w,
-                              vertical: 5.h,
-                            ),
-                            margin: EdgeInsets.only(
-                              left: 25.w,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.r),
-                              color: ColorConstants.paidCardColor,
-                            ),
-                            child: Text(
-                              disputedModel.status,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: ColorConstants.paidTextColor,
-                              ),
-                            ),
-                          ),
-                          8.verticalSpace,
-                          Container(
-                            width: 96.w,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16.w,
-                              vertical: 5.h,
-                            ),
-                            margin: EdgeInsets.only(
-                              left: 25.w,
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.r),
-                              color: ColorConstants.unpaidCardColor,
-                            ),
-                            child: Align(
-                              child: Text(
-                                'Cancel',
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: ColorConstants.unpaidTextColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ],

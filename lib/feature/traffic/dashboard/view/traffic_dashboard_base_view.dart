@@ -2,6 +2,7 @@ import 'package:echalan/core/imports/ui_imports.dart';
 import 'package:echalan/feature/history/presentation/view/history_base_view.dart';
 import 'package:echalan/feature/traffic/dashboard/view/screens/home/view/traffic_home_base_view.dart';
 import 'package:echalan/feature/traffic/profile/presentation/view/profile_base_view.dart';
+import 'package:echalan/feature/traffic_history/presentation/view/history_base_view.dart';
 
 class TrafficDashboardBaseView extends StatefulWidget {
   const TrafficDashboardBaseView({super.key});
@@ -22,7 +23,7 @@ class _TrafficDashboardBaseViewState extends State<TrafficDashboardBaseView> {
 
   final List<Widget> _pages = [
     const TrafficHomeBaseView(),
-    const HistoryBaseView(),
+    const TrafficHistoryBaseView(),
     const ProfileBaseView(),
   ];
 
