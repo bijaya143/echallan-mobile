@@ -51,8 +51,6 @@ class _ViolationDetailScreenState extends State<ViolationDetailScreen> {
                   ),
                 ),
                 24.verticalSpace,
-
-                // Keeping Pay Now Button in Place
                 Column(
                   children: [
                     AppButton(
